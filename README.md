@@ -69,6 +69,8 @@ application version number does not retroactively change the terms of another co
 The server operator reviews and accepts the terms on first launch, and again only
 if they change. The initial reader lets operators choose their language and read
 a complete courtesy translation; the official English original remains available.
+The acceptance checkbox becomes available after reaching the end of the displayed
+terms; the operator must still select it explicitly.
 The language choice is remembered by the client. Acceptance refers to the exact
 English terms, is stored locally, is not sent to the maintainer and does not
 determine copyright ownership.

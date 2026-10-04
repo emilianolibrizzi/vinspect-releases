@@ -25,8 +25,10 @@ its own inspection archive; this repository does not host laboratory data.
 
 The native server manager and browser interface offer English, Italian, French,
 German, Dutch and Greek. English is the default. Report headings, diagnostic logs,
-licence terms and official documentation remain in English; user-entered data is
-preserved. Client language preferences survive software updates.
+official licence terms and documentation remain in English; user-entered data is
+preserved. Client language preferences survive software updates. Useful controls
+provide localized contextual help, and the application identity follows the light
+or dark theme in both the server manager and browser interface.
 
 ## Software updates
 
@@ -64,9 +66,12 @@ outside the software licence's grant.
 The exact licence text included with a copy defines its terms. A matching
 application version number does not retroactively change the terms of another copy.
 
-The server operator reviews and accepts the full English terms on first launch,
-and again only if those terms change. This local acknowledgement is not sent to
-the maintainer and does not determine copyright ownership.
+The server operator reviews and accepts the terms on first launch, and again only
+if they change. The initial reader lets operators choose their language and read
+a complete courtesy translation; the official English original remains available.
+The language choice is remembered by the client. Acceptance refers to the exact
+English terms, is stored locally, is not sent to the maintainer and does not
+determine copyright ownership.
 
 For licensing enquiries: **Emiliano Librizzi**, Province of Caserta, Italy —
 [emiliano.librizzi@gmail.com](mailto:emiliano.librizzi@gmail.com).

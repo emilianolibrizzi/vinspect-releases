@@ -37,15 +37,19 @@ keeps its own inspection archive. This repository does not host laboratory data.
 
 After reviewing and accepting the licence, request a private activation code from
 [Emiliano Librizzi](mailto:emiliano.librizzi@gmail.com), giving your laboratory's
-name. Open **Menu → Settings → Sign-in → Site license** in the manager, paste the
-code into **Activation code** and choose **Activate** while online. One step
+name. **Site activation** opens after the terms and before the server manager.
+Paste the code into **Activation code** and choose **Activate and continue** while online. One step
 obtains the signed licence, registers the site and connects its update controls.
 No separate Site ID exchange or connection-file import is needed for this route.
 
 A code normally expires after **24 hours** and activates one server computer.
-The activation window opens during initial setup. **Resume activation** recovers an
-interrupted exchange using the saved claim. The manager remains available without
-activation; the inspection server requires a signed machine-bound licence and a
+**Resume activation** recovers an interrupted exchange using the saved claim.
+Cancelling setup closes the application without starting the server. After valid
+activation, the manager can open offline for status and recovery; missing or
+invalid activation returns to setup. The non-secret **Support reference** under
+**Help & site details** identifies the installation for assistance; it is not an
+activation code. Existing files remain accessible through the file manager.
+The inspection server requires a signed machine-bound licence and a
 fresh online authorisation at every start. Multiple operator browsers may connect
 to that server according to its local access policy.
 
@@ -124,9 +128,12 @@ these limits per site. One stable identity has one central registration and one 
 Tabs in the same browser share that session. Another browser must wait for sign-out
 or expiry. Hiding or renaming a local profile does not free a registration; only
 the publisher can suspend, revoke or restore central registrations.
-The activation window shows the assigned limits. The manager displays working and
-registered operators automatically; site details show all four counts and the
-last online verification. Publisher changes arrive through the existing renewal.
+The activation window shows the assigned limits. Compact site, licence and
+operator indicators summarise the manager's status; details show all four counts
+and the last online verification. The display refreshes automatically, while
+centrally verified counts and publisher changes arrive through background checks.
+Historical or unavailable information is labelled accordingly, not shown as a
+guaranteed live result.
 
 Verified KM3NeT Google accounts require site approval. Other Google accounts cannot
 sign in to inspections, but remain an option for separate Drive connections.

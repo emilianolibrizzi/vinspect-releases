@@ -35,14 +35,39 @@ keeps its own inspection archive. This repository does not host laboratory data.
 
 ## Activate the site
 
-After reviewing and accepting the licence, request a private activation code from
-[Emiliano Librizzi](mailto:emiliano.librizzi@gmail.com), giving your laboratory's
-name. **Site activation** opens after the terms and before the server manager.
-Paste the code into **Activation code** and choose **Activate and continue** while online. One step
-obtains the signed licence, registers the site and connects its update controls.
-No separate Site ID exchange or connection-file import is needed for this route.
+After reviewing and accepting the licence, **Site activation** opens before the
+server manager. Choose **Request activation**, sign in with your verified KM3NeT
+Google account on the official page and select your site from the author's
+directory. Return to the client and wait for the author's approval. The client
+then verifies its signed licence and connects its managed update controls.
+
+Only the author creates directory entries; renaming a site does not create another
+licence or reset limits. One entry authorises one server, with separately approved
+operator browsers. If your site is missing, contact
+[Emiliano Librizzi](mailto:emiliano.librizzi@gmail.com). A private one-use activation
+code supplied by the author remains a manual alternative. Google sign-in for the
+request does not configure Google operator access or Drive on the local server.
 
 A code normally expires after **24 hours** and activates one server computer.
+Start a normal server transfer on the currently authorised computer. After
+confirmation, its inspection service stops and its central authorisation is
+suspended. Use its private, one-use transfer code and a verified KM3NeT Google
+account on the new computer. Guided transfers are preauthorised by default and
+complete automatically after the service verifies the handoff and new binding.
+The author can disable this option per site, requiring manual review instead.
+The site keeps its licence and operator limits. Cancelling the request does not reactivate the old server;
+contact the author if the transfer must be reversed.
+
+If the old computer is broken, submit a separate recovery request from the new
+computer and contact the author. This request clearly lacks the old server's
+approval and does not suspend or replace the existing installation. The author
+must independently verify the request and explicitly approve recovery. Any
+outstanding authorisation can require up to 60 minutes of waiting before the
+replacement starts, preventing overlapping use.
+
+Restore inspection projects from their backups separately; activation does not
+copy files. Old activation files must not overwrite the new setup.
+
 **Resume activation** recovers an interrupted exchange using the saved claim.
 Cancelling setup closes the application without starting the server. After valid
 activation, the manager can open offline for status and recovery; missing or
@@ -53,12 +78,19 @@ The inspection server requires a signed machine-bound licence and a
 fresh online authorisation at every start. Multiple operator browsers may connect
 to that server according to its local access policy.
 
-Authorisation is renewed **every minute** and lasts at most **15 minutes**. Brief
+Authorisation is renewed **every fifteen minutes** and lasts at most **60 minutes**. Brief
 Internet interruptions are tolerated until expiry; then new protected work pauses
 until verification succeeds. Existing files and recoverable browser drafts remain
-intact. A replacement computer requires publisher-approved transfer, even if the
-complete archive was copied. Older offline-only grants require online activation.
+intact. A replacement computer requires a verified transfer under the publisher’s
+site policy, even if the complete archive was copied. Older offline-only grants require online activation.
 Public availability does not grant unrestricted use or activate a site.
+
+When all operators have been inactive for 30 minutes, the running server enters
+standby and pauses periodic cloud authorisation checks. Open tabs and automatic
+page polling do not count as human activity. Active uploads and saves keep the
+server awake. Returning to work requires a fresh online authorisation; inspection
+files and browser drafts remain intact. This idle threshold is separate from the
+60-minute maximum validity of an authorisation during an Internet interruption.
 
 Managed updates initially remain on **Hold** until the publisher assigns a release
 policy. This does not prevent local inspection work. Local password access works
@@ -98,7 +130,7 @@ support the updater; they are not other application editions. The full archive i
 available for portable use; **VInspect-Setup** is the recommended first download. GitHub's automatic source archives contain this
 repository's documentation, not VInspect's application source.
 
-**Menu → Site connection** manages the credential created during activation.
+**Menu → Site connection** shows the authorisation connection and lets the site check its status. The distributed client cannot import another connection or disconnect this required service.
 The publisher's private **VInspect Control** service authorises the bound server
 and supplies its site/group/global signed-release policy. Site clients have no
 owner-console privileges, access to other sites or remote desktop controls.

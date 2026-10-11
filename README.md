@@ -98,25 +98,32 @@ repository's documentation, not VInspect's application source.
 The publisher's private **VInspect Control** service authorises the bound server
 and supplies its site/group/global signed-release policy. Site clients have no
 owner-console privileges, access to other sites or remote desktop controls.
-Turning updates Off does not stop required authorisation checks.
+The publisher controls the release source and signing key. Site managers choose
+when to install, but cannot disable required checks or change that trust policy.
 
 The service receives site/licence identifiers, a site-specific machine hash,
 application versions and minimal session/contact metadata. Raw hardware identifiers,
-inspection databases, photographs, reports, backups, passwords and Google tokens
-are not uploaded. A limited operator roster (names, verified emails when present,
+inspection databases, photographs, reports, backups, passwords and Drive tokens
+are not uploaded. Google sign-in ID tokens are transmitted over HTTPS for independent
+central verification and are not stored or logged. A limited operator roster (names, verified emails when present,
 identity category, approval and activity status) supports publisher access control. This connection does not configure Google sign-in,
 Drive, DNS or an Internet tunnel. A revocation reaches a connected server at its
 next check; a disconnected server can retain authorisation until it expires.
 
 These controls resist ordinary copying and simultaneous use, but do not guarantee
 protection against an administrator modifying the software or spoofing identifiers.
+Session controls cannot establish who is physically using a device or prevent
+people from deliberately sharing an unlocked browser or copied session credentials.
+Each operator must keep their account and device access private.
 
 ## Operator access
 
 The initial allowance is **20 registered / 5 active operators**, including **2
 registered / 1 active local profiles** without Google. The publisher can configure
-these limits per site. One stable identity counts once across devices; hiding an
-unused profile retains its inspection history and frees a registration place.
+these limits per site. One stable identity has one central registration and one active browser session.
+Tabs in the same browser share that session. Another browser must wait for sign-out
+or expiry. Hiding or renaming a local profile does not free a registration; only
+the publisher can suspend, revoke or restore central registrations.
 The activation window shows the assigned limits. The manager displays working and
 registered operators automatically; site details show all four counts and the
 last online verification. Publisher changes arrive through the existing renewal.

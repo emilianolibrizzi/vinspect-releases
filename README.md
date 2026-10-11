@@ -117,6 +117,9 @@ The initial allowance is **20 registered / 5 active operators**, including **2
 registered / 1 active local profiles** without Google. The publisher can configure
 these limits per site. One stable identity counts once across devices; hiding an
 unused profile retains its inspection history and frees a registration place.
+The activation window shows the assigned limits. The manager displays working and
+registered operators automatically; site details show all four counts and the
+last online verification. Publisher changes arrive through the existing renewal.
 
 Verified KM3NeT Google accounts require site approval. Other Google accounts cannot
 sign in to inspections, but remain an option for separate Drive connections.

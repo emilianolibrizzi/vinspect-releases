@@ -5,41 +5,62 @@ KM3NeT DOMs, detection units, production batches and electronic components.
 
 Developed by **Emiliano Librizzi** · **INFN Naples** · **Capacity Laboratory** · **KM3NeT**.
 
-## Download and start
+## Download and install
 
-Download [**VInspect-Linux.tar.gz**](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz)
-and its [SHA-256 checksum](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz.sha256).
-Extract the complete archive into a new, empty folder such as **VInspect** and read
-**START-HERE.md**. The executable and documents are directly inside it, with no
-extra enclosing folder. Open **VInspect** to start the guided setup. Choose a language,
-then **Install** into a new folder (default **~/VInspect**) with an optional Applications
-menu shortcut, or choose **Use portable** to keep working in the extracted folder.
-Python is included; no administrator privileges or system-wide installation are required.
-The same compact archive supports both choices; there is no separate installer download.
+Download [**VInspect-Setup**](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Setup)
+and its [SHA-256 checksum](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Setup.sha256).
+This **single executable** contains the application, bundled Python, guides,
+licence and third-party notices. Open it, choose your language and installation
+folder (default **~/VInspect**), then **Install → Open VInspect**. The guided
+installer includes progress and an optional Applications-menu shortcut.
 
-Setup verifies the package before copying it and keeps existing archives untouched.
-It creates a fresh installation and does not migrate site data. Existing installations
-continue to open normally. **Menu → About → Create app shortcut** is also available
-for portable use; keep the extracted folder in its chosen location.
+Linux may require **Properties → Permissions → Allow executing file as program**
+first. From a terminal in the download folder, use `chmod +x VInspect-Setup`, then
+`./VInspect-Setup`. Do not use `sudo`. Setup needs no archive extraction, Python
+installation or administrator privileges. It verifies the included files, creates
+fresh storage and leaves existing archives untouched. It is not an archive
+migration or in-place update tool. Its private temporary files are removed when
+setup closes; the installed application and site data remain in the chosen folder.
+
+For portable use, [**VInspect-Linux.tar.gz**](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz)
+and its [checksum](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz.sha256)
+remain available. Extract the complete archive into a new empty folder, open
+**VInspect** and choose **Use portable**. **START-HERE.md** explains installation,
+activation and migration. This is the same application, not a different edition.
 
 The server supports **Linux x86-64 with glibc 2.34 or newer**, X11 or XWayland, and
 the desktop libraries listed in the installation guide. Phones, tablets, Windows
 and macOS computers connect through a browser. Each site runs its own server and
 keeps its own inspection archive. This repository does not host laboratory data.
 
-## Site activation
+## Activate the site
 
-The server manager opens before activation. After reviewing and accepting the
-licence, open **Menu → Settings → Sign-in → Site license**, copy the **Site ID**
-and request an activation for your site from
-[Emiliano Librizzi](mailto:emiliano.librizzi@gmail.com). Import the supplied signed
-activation before starting the inspection server. Public download availability
-does not grant unrestricted use or activate a site automatically.
+After reviewing and accepting the licence, request a private activation code from
+[Emiliano Librizzi](mailto:emiliano.librizzi@gmail.com), giving your laboratory's
+name. Open **Menu → Settings → Sign-in → Site license** in the manager, paste the
+code into **Activation code** and choose **Activate** while online. One step
+obtains the signed licence, registers the site and connects its update controls.
+No separate Site ID exchange or connection-file import is needed for this route.
 
-Local password access works without Google or a cloud connection. Browser approval
-can be enabled by the local administrator. Optional Google account access and
-Drive copies require the site's own setup and the approvals described in the guides.
-Trust the site's HTTPS certificate on client devices before using cameras or downloads.
+A code normally expires after **24 hours** and activates one server computer.
+The activation window opens during initial setup. **Resume activation** recovers an
+interrupted exchange using the saved claim. The manager remains available without
+activation; the inspection server requires a signed machine-bound licence and a
+fresh online authorisation at every start. Multiple operator browsers may connect
+to that server according to its local access policy.
+
+Authorisation is renewed **every minute** and lasts at most **15 minutes**. Brief
+Internet interruptions are tolerated until expiry; then new protected work pauses
+until verification succeeds. Existing files and recoverable browser drafts remain
+intact. A replacement computer requires publisher-approved transfer, even if the
+complete archive was copied. Older offline-only grants require online activation.
+Public availability does not grant unrestricted use or activate a site.
+
+Managed updates initially remain on **Hold** until the publisher assigns a release
+policy. This does not prevent local inspection work. Local password access works
+without Google; these local profiles require site and publisher approval. Google
+account access and Drive copies require separate site configuration and approvals.
+Trust the site's HTTPS certificate on client devices before cameras or downloads.
 
 ## Inspection workflows
 
@@ -59,7 +80,7 @@ are available. Official reports, documentation, diagnostic logs and the official
 licence text remain English. Interface translation preserves identifiers and
 user-entered inspection text.
 
-## Signed updates and optional Site connection
+## Signed updates and Site connection
 
 The server manager checks the **Official** GitHub update source and verifies
 Ed25519 signatures, file size and SHA-256 before installation. Checking or
@@ -70,18 +91,38 @@ folder and any custom storage locations when replacing an installation manually.
 The separate versioned executable and
 [`latest.json`](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/latest.json)
 support the updater; they are not other application editions. The full archive is
-the recommended first download. GitHub's automatic source archives contain this
+available for portable use; **VInspect-Setup** is the recommended first download. GitHub's automatic source archives contain this
 repository's documentation, not VInspect's application source.
 
-**Menu → Site connection** optionally connects one installation to the publisher's
-private **VInspect Control** service using a site-specific connection file. It
-reports the installation ID and application version and receives the assigned
-signed-release policy. It does not give the site access to the publisher console,
-other sites or remote desktop controls. Inspection databases, photographs, reports,
-backups, operator lists and local passwords are not uploaded by this connection.
-It does not configure Google sign-in, Drive, DNS or an Internet tunnel. An unavailable
-control service pauses managed update delivery; ordinary local work continues
-under the installed activation and access settings.
+**Menu → Site connection** manages the credential created during activation.
+The publisher's private **VInspect Control** service authorises the bound server
+and supplies its site/group/global signed-release policy. Site clients have no
+owner-console privileges, access to other sites or remote desktop controls.
+Turning updates Off does not stop required authorisation checks.
+
+The service receives site/licence identifiers, a site-specific machine hash,
+application versions and minimal session/contact metadata. Raw hardware identifiers,
+inspection databases, photographs, reports, backups, passwords and Google tokens
+are not uploaded. A limited operator roster (names, verified emails when present,
+identity category, approval and activity status) supports publisher access control. This connection does not configure Google sign-in,
+Drive, DNS or an Internet tunnel. A revocation reaches a connected server at its
+next check; a disconnected server can retain authorisation until it expires.
+
+These controls resist ordinary copying and simultaneous use, but do not guarantee
+protection against an administrator modifying the software or spoofing identifiers.
+
+## Operator access
+
+The initial allowance is **20 registered / 5 active operators**, including **2
+registered / 1 active local profiles** without Google. The publisher can configure
+these limits per site. One stable identity counts once across devices; hiding an
+unused profile retains its inspection history and frees a registration place.
+
+Verified KM3NeT Google accounts require site approval. Other Google accounts cannot
+sign in to inspections, but remain an option for separate Drive connections.
+Local profiles require both site and publisher approval. Local identities are
+site-declared, not Google-verified. Approval follows stable identity rather than
+a display name. Signing in does not give an operator distributor privileges.
 
 ## Licence and attribution
 
@@ -107,7 +148,7 @@ to that copy; matching version numbers do not change earlier copies retroactivel
 
 ## Verification and support
 
-The full archive includes installation and workflow guides, licence notices,
+The installer and portable archive include installation and workflow guides, licence notices,
 verification records and checksums. Consult those records for the checks performed
 on the supplied executable. Physical cameras, hotspot adapters, real Google/Drive
 accounts, desktop appearance and sustained load still require checks at each site.

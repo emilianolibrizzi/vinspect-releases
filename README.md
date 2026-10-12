@@ -17,10 +17,12 @@ installer includes progress and an optional Applications-menu shortcut.
 Linux may require **Properties → Permissions → Allow executing file as program**
 first. From a terminal in the download folder, use `chmod +x VInspect-Setup`, then
 `./VInspect-Setup`. Do not use `sudo`. Setup needs no archive extraction, Python
-installation or administrator privileges. It verifies the included files, creates
-fresh storage and leaves existing archives untouched. It is not an archive
-migration or in-place update tool. Its private temporary files are removed when
-setup closes; the installed application and site data remain in the chosen folder.
+installation or administrator privileges. It verifies the included files. For an
+existing installation, close VInspect, select its folder and choose **Update
+VInspect**: activation, settings and inspection files are kept. Do not delete the
+old folder or create another site to update. A new installation gets fresh storage.
+Moving a site to another computer remains a separate authorised transfer. Setup
+removes its private temporary files when it closes.
 
 For portable use, [**VInspect-Linux.tar.gz**](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz)
 and its [checksum](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz.sha256)
@@ -36,7 +38,7 @@ keeps its own inspection archive. This repository does not host laboratory data.
 ## Activate the site
 
 After reviewing and accepting the licence, **Site activation** opens before the
-server manager. Choose **Request activation**, sign in with your verified KM3NeT
+server manager. Choose **Continue in browser**, sign in with your verified KM3NeT
 Google account on the official page and select your site from the author's
 directory. Return to the client and wait for the author's approval. The client
 then verifies its signed licence and connects its managed update controls.
@@ -72,7 +74,7 @@ copy files. Old activation files must not overwrite the new setup.
 Cancelling setup closes the application without starting the server. After valid
 activation, the manager can open offline for status and recovery; missing or
 invalid activation returns to setup. The non-secret **Support reference** under
-**Help & site details** identifies the installation for assistance; it is not an
+**Help** identifies the installation for assistance; it is not an
 activation code. Existing files remain accessible through the file manager.
 The inspection server requires a signed machine-bound licence and a
 fresh online authorisation at every start. Multiple operator browsers may connect
@@ -205,3 +207,9 @@ Use **Menu → View activity** and `./VInspect --check-runtime` for diagnostics.
 
 Application source, site records, credentials, private signing keys and the private
 administration service are excluded from this public release repository.
+
+The guided installer can update an existing installation while preserving its
+activation and archive. A private registration also recognises the same computer
+and Linux user when the program folder changes. If the original archive is
+missing, activation recovery is separate from restoring inspection data. Online
+server authorisation and approved transfers remain mandatory.

@@ -24,6 +24,13 @@ old folder or create another site to update. A new installation gets fresh stora
 Moving a site to another computer remains a separate authorised transfer. Setup
 removes its private temporary files when it closes.
 
+On supported Linux systems, **Set up short address** is an optional installer
+action. It requests administrator confirmation for a fixed system service that
+forwards HTTPS 443 to the application's normal 8443 port. VInspect itself remains
+unprivileged. Existing firewall rules and client IP addresses are preserved; the
+launcher verifies the connection before showing an address without `:8443`.
+Custom network settings and unsupported systems retain their existing address.
+
 For portable use, [**VInspect-Linux.tar.gz**](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz)
 and its [checksum](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Linux.tar.gz.sha256)
 remain available. Extract the complete archive into a new empty folder, open
@@ -102,6 +109,15 @@ without Google and requires site and publisher approval. Verified KM3NeT sign-in
 does not require the local password; site approval and signed limits still apply.
 Drive copies require separate configuration and consent.
 Trust the site's HTTPS certificate on client devices before cameras or downloads.
+
+Start the server and choose **Connect a device → Set up certificate…** for a
+temporary local QR download with instructions in the selected language. It shares
+only the public CA certificate, including an optional certificate-only iPhone/iPad
+profile. Compare the certificate's SHA-256 fingerprint with the server window
+before trusting it; the HTTP download page itself is not proof of authenticity.
+The device owner must confirm installation and trust in the operating system.
+The link expires after 15 minutes and closes with the setup window or server.
+Manual export remains available, and no cloud storage is used for this transfer.
 
 ## Inspection workflows
 

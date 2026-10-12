@@ -116,7 +116,7 @@ Trust the site's HTTPS certificate on client devices before cameras or downloads
   separate from the working archive.
 
 The server manager and browser interface support English, Italian, French, German,
-Dutch and Greek, with English as the default. Light, Dark and System appearance
+Dutch, Greek and Spanish, with English as the default. Light, Dark and System appearance
 are available. Official reports, documentation, diagnostic logs and the official
 licence text remain English. Interface translation preserves identifiers and
 user-entered inspection text.

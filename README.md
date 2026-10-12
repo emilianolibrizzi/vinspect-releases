@@ -179,6 +179,18 @@ Local profiles require both site and publisher approval. Local identities are
 site-declared, not Google-verified. Approval follows stable identity rather than
 a display name. Signing in does not give an operator distributor privileges.
 
+The **Site manager** button in the launcher's upper-right corner opens a separate
+KM3NeT login for the site's representative. The publisher authorises this role
+and its permissions. A verified manager sees their name and profile photo and
+uses **People & access** for Google accounts, local devices and pending requests.
+Protected changes require a fresh online permission check; the session lasts at
+most eight hours and is cleared when the client closes. This role grants no access
+to the private distributor console or licence/update-policy administration.
+
+Google profile pictures are optional display information and fall back to the
+standard icon when unavailable. Displaying them contacts Google's picture host;
+inspection photographs are unrelated and stay in the site's archive.
+
 ## Licence and attribution
 
 This release includes the [**VInspect KM3NeT Use License 1.0**](LICENSE.VINSPECT.md),
@@ -205,7 +217,10 @@ to that copy; matching version numbers do not change earlier copies retroactivel
 
 Use **Menu → Guide** in the browser or server manager. Topic-based walkthroughs
 explain the current workflow and highlight relevant controls without submitting
-forms or changing records. The web guide can be paused and resumed. Help follows
+forms or changing records. In the browser, **Next** and **Previous** stay on the
+highlighted walkthrough until that chapter finishes; the index stays reachable.
+First visits offer the relevant section's guide, which can be postponed, paused
+and resumed. Discreet information buttons open help for important sections. Help follows
 the selected interface language; official reports and documentation stay in English.
 
 ## Verification and support

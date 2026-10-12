@@ -11,7 +11,7 @@ Download [**VInspect-Setup**](https://github.com/emilianolibrizzi/vinspect-relea
 and its [SHA-256 checksum](https://github.com/emilianolibrizzi/vinspect-releases/releases/latest/download/VInspect-Setup.sha256).
 This **single executable** contains the application, bundled Python, guides,
 licence and third-party notices. Open it, choose your language and installation
-folder (default **~/VInspect**), then **Install → Open VInspect**. The guided
+folder (default **~/VInspect**), then **Install → Continue setup**. The guided
 installer includes progress and an optional Applications-menu shortcut.
 
 Linux may require **Properties → Permissions → Allow executing file as program**

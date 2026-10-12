@@ -81,8 +81,8 @@ copy files. Old activation files must not overwrite the new setup.
 
 **Resume activation** recovers an interrupted exchange using the saved claim.
 Cancelling setup closes the application without starting the server. After valid
-activation, the manager can open offline for status and recovery; missing or
-invalid activation returns to setup. The non-secret **Support reference** under
+activation, a verified publisher-approved KM3NeT site manager must sign in to
+open management controls. Missing or invalid activation returns to setup. The non-secret **Support reference** under
 **Help** identifies the installation for assistance; it is not an
 activation code. Existing files remain accessible through the file manager.
 The inspection server requires a signed machine-bound licence and a
@@ -151,8 +151,8 @@ support the updater; they are not other application editions. The full archive i
 available for portable use; **VInspect-Setup** is the recommended first download. GitHub's automatic source archives contain this
 repository's documentation, not VInspect's application source.
 
-**Menu → Site connection** shows the authorisation connection. If recovery is needed, **Site details** opens the authorised activation workflow directly. After activation, the client synchronises and checks for updates automatically. New sites inherit the publisher’s release policy; explicit site holds remain under publisher control. The distributed client cannot import another connection or disconnect this required service.
-The publisher's private **VInspect Control** service authorises the bound server
+**Profile menu → Site connection** shows the authorisation connection. If recovery is needed, **Site details** opens the authorised activation workflow directly. After activation, the client synchronises and checks for updates automatically. New sites inherit the publisher’s release policy; explicit site holds remain under publisher control. The distributed client cannot import another connection or disconnect this required service.
+The publisher’s central authorisation service authorises the bound server
 and supplies its site/group/global signed-release policy. Site clients have no
 owner-console privileges, access to other sites or remote desktop controls.
 The publisher controls the release source and signing key. Site managers choose
@@ -199,13 +199,21 @@ Local profiles require both site and publisher approval. Local identities are
 site-declared, not Google-verified. Approval follows stable identity rather than
 a display name. Signing in does not give an operator distributor privileges.
 
-The **Site manager** button in the launcher's upper-right corner opens a separate
-KM3NeT login for the site's representative. The publisher authorises this role
-and its permissions. A verified manager sees their name and profile photo and
-uses **People & access** for Google accounts, local devices and pending requests.
-Protected changes require a fresh online permission check; the session lasts at
-most eight hours and is cleared when the client closes. This role grants no access
-to the private distributor console or licence/update-policy administration.
+Each time the native client opens, the site's representative must choose
+**Sign in with KM3NeT** before using server management. The publisher approves
+this verified account and its assigned permissions; an activation request or
+operator approval does not assign the manager role. **Copy link** is available
+if the browser does not open, and **Restore site access** handles an installation
+that needs activation recovery.
+
+After verification, the upper-right profile shows the manager's name and optional
+photo. Its menu groups **People & access**, settings and backups according to the
+assigned permissions. The main menu keeps help, activity, language and appearance;
+child windows inherit the selected language. Protected changes require a fresh
+online permission check. The memory-only session lasts at most eight hours and
+is cleared when the client closes. Signing out or session expiry locks management
+without stopping inspections already running. Licence limits and update policy
+remain under publisher control.
 
 Google profile pictures are optional display information and fall back to the
 standard icon when unavailable. Displaying them contacts Google's picture host;
@@ -235,7 +243,7 @@ to that copy; matching version numbers do not change earlier copies retroactivel
 
 ## Interactive help
 
-Use **Menu → Guide** in the browser or server manager. Topic-based walkthroughs
+Use **Menu → Guide** in the browser or **Menu → Interactive guide** in the server manager. Topic-based walkthroughs
 explain the current workflow and highlight relevant controls without submitting
 forms or changing records. In the browser, **Next** and **Previous** stay on the
 highlighted walkthrough until that chapter finishes; the index stays reachable.
@@ -249,7 +257,7 @@ The installer and portable archive include installation and workflow guides, lic
 verification records and checksums. Consult those records for the checks performed
 on the supplied executable. Physical cameras, hotspot adapters, real Google/Drive
 accounts, desktop appearance and sustained load still require checks at each site.
-Use **Menu → View activity** and `./VInspect --check-runtime` for diagnostics.
+Use **Menu → View activity…** and `./VInspect --check-runtime` for diagnostics.
 
 Application source, site records, credentials, private signing keys and the private
 administration service are excluded from this public release repository.

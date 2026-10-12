@@ -132,7 +132,7 @@ support the updater; they are not other application editions. The full archive i
 available for portable use; **VInspect-Setup** is the recommended first download. GitHub's automatic source archives contain this
 repository's documentation, not VInspect's application source.
 
-**Menu → Site connection** shows the authorisation connection and lets the site check its status. The distributed client cannot import another connection or disconnect this required service.
+**Menu → Site connection** shows the authorisation connection. If recovery is needed, **Site details** opens the authorised activation workflow directly. After activation, the client synchronises and checks for updates automatically. New sites inherit the publisher’s release policy; explicit site holds remain under publisher control. The distributed client cannot import another connection or disconnect this required service.
 The publisher's private **VInspect Control** service authorises the bound server
 and supplies its site/group/global signed-release policy. Site clients have no
 owner-console privileges, access to other sites or remote desktop controls.

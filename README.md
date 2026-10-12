@@ -47,8 +47,10 @@ Only the author creates directory entries; renaming a site does not create anoth
 licence or reset limits. One entry authorises one server, with separately approved
 operator browsers. If your site is missing, contact
 [Emiliano Librizzi](mailto:emiliano.librizzi@gmail.com). A private one-use activation
-code supplied by the author remains a manual alternative. Google sign-in for the
-request does not configure Google operator access or Drive on the local server.
+code supplied by the author remains a manual alternative. Managed sites offer
+KM3NeT operator sign-in automatically through the official hosted verification
+page. Requesting activation does not itself approve access to the local archive.
+Drive is a separate optional connection.
 
 A code normally expires after **24 hours** and activates one server computer.
 Start a normal server transfer on the currently authorised computer. After
@@ -94,10 +96,11 @@ server awake. Returning to work requires a fresh online authorisation; inspectio
 files and browser drafts remain intact. This idle threshold is separate from the
 60-minute maximum validity of an authorisation during an Internet interruption.
 
-Managed updates initially remain on **Hold** until the publisher assigns a release
-policy. This does not prevent local inspection work. Local password access works
-without Google; these local profiles require site and publisher approval. Google
-account access and Drive copies require separate site configuration and approvals.
+New activations inherit the publisher’s release policy; an explicit site **Hold**
+pauses updates without stopping local inspections. Local password access works
+without Google and requires site and publisher approval. Verified KM3NeT sign-in
+does not require the local password; site approval and signed limits still apply.
+Drive copies require separate configuration and consent.
 Trust the site's HTTPS certificate on client devices before cameras or downloads.
 
 ## Inspection workflows
@@ -144,8 +147,9 @@ application versions and minimal session/contact metadata. Raw hardware identifi
 inspection databases, photographs, reports, backups, passwords and Drive tokens
 are not uploaded. Google sign-in ID tokens are transmitted over HTTPS for independent
 central verification and are not stored or logged. A limited operator roster (names, verified emails when present,
-identity category, approval and activity status) supports publisher access control. This connection does not configure Google sign-in,
-Drive, DNS or an Internet tunnel. A revocation reaches a connected server at its
+identity category, approval and activity status) supports publisher access control.
+The connection enables managed hosted KM3NeT sign-in; it does not configure Drive,
+DNS or an Internet tunnel. A revocation reaches a connected server at its
 next check; a disconnected server can retain authorisation until it expires.
 
 These controls resist ordinary copying and simultaneous use, but do not guarantee
@@ -196,6 +200,13 @@ The project affiliations provide context; they do not identify an institution as
 Licensor or imply endorsement. Acceptance, attribution and release signatures do
 not certify ownership or legal validity. The terms included with each copy apply
 to that copy; matching version numbers do not change earlier copies retroactively.
+
+## Interactive help
+
+Use **Menu → Guide** in the browser or server manager. Topic-based walkthroughs
+explain the current workflow and highlight relevant controls without submitting
+forms or changing records. The web guide can be paused and resumed. Help follows
+the selected interface language; official reports and documentation stay in English.
 
 ## Verification and support
 

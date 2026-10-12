@@ -148,6 +148,10 @@ inspection databases, photographs, reports, backups, passwords and Drive tokens
 are not uploaded. Google sign-in ID tokens are transmitted over HTTPS for independent
 central verification and are not stored or logged. A limited operator roster (names, verified emails when present,
 identity category, approval and activity status) supports publisher access control.
+Existing signed checks also report local-backup configuration, copy times, project
+count, total ZIP size, an opaque snapshot reference and a fixed error category.
+The publisher sees the age of that observation; no local paths, project names or
+backup contents are uploaded. ZIP integrity checks are not restore tests.
 The connection enables managed hosted KM3NeT sign-in; it does not configure Drive,
 DNS or an Internet tunnel. A revocation reaches a connected server at its
 next check; a disconnected server can retain authorisation until it expires.

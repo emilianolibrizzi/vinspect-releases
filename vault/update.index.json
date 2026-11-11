@@ -1,0 +1,34 @@
+{
+  "chunks": [
+    {
+      "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update-0.enc",
+      "iv": "BPPUU3rr6H3ATWte",
+      "enc_bytes": 10485776
+    },
+    {
+      "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update-1.enc",
+      "iv": "5t+54XdGoXL7H4rt",
+      "enc_bytes": 10485776
+    },
+    {
+      "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update-2.enc",
+      "iv": "Oxj1Y4yF0UZoB8Xy",
+      "enc_bytes": 10485776
+    },
+    {
+      "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update-3.enc",
+      "iv": "ycIOkUhU7Cu32gr/",
+      "enc_bytes": 10485776
+    },
+    {
+      "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update-4.enc",
+      "iv": "sDpFacazQJbOae4Q",
+      "enc_bytes": 10485776
+    },
+    {
+      "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update-5.enc",
+      "iv": "LI+PBbE62nk+XY1u",
+      "enc_bytes": 303328
+    }
+  ]
+}

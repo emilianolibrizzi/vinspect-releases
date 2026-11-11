@@ -1,0 +1,86 @@
+{
+  "kdf": "PBKDF2-HMAC-SHA256",
+  "iterations": 250000,
+  "salt": "8o6M8UGnblXaXYLYo4tGwA==",
+  "verifier": {
+    "iv": "OaRxnIf9+c+b13YG",
+    "ct": "fXn2Ch41iWUgZR2S+LeDiC33M34TEzNSMtlo0yv4WNw8FwOY2UFB/A==",
+    "aad": "vinspect:verifier"
+  },
+  "targets": {
+    "setup": {
+      "filename": "VInspect-Setup",
+      "total_bytes": 54359357,
+      "sha256": "bb27a233b969d290494d422b8eb809121247d23e845cd4dc7a11eee2478a9226",
+      "chunks": [
+        {
+          "path": "vault/setup-0.enc",
+          "iv": "c8RPAiPrZ3SkICKw",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/setup-1.enc",
+          "iv": "Cm0kERcLWH3vgPIV",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/setup-2.enc",
+          "iv": "PEZ1ObObaXkK66ZM",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/setup-3.enc",
+          "iv": "Dm/uiXzN6/nDxzSS",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/setup-4.enc",
+          "iv": "aTEi7h6DImxcsRC0",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/setup-5.enc",
+          "iv": "rbuIvWMP5GNxQH0M",
+          "enc_bytes": 1930573
+        }
+      ]
+    },
+    "archive": {
+      "filename": "VInspect-Linux.tar.gz",
+      "total_bytes": 52602388,
+      "sha256": "aadc22a501acb7948d5d43d7097dd2c38fa215586e623cfa28d59b0fa2014f88",
+      "chunks": [
+        {
+          "path": "vault/archive-0.enc",
+          "iv": "hoEsEb9j4dseI8Vn",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/archive-1.enc",
+          "iv": "Y6QwVwG5t/U9BQKX",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/archive-2.enc",
+          "iv": "6d4nDzXuTvwiaBYk",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/archive-3.enc",
+          "iv": "/ivslPLuxfeHl1ny",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/archive-4.enc",
+          "iv": "hApj/Kk1sLrCA5Q7",
+          "enc_bytes": 10485776
+        },
+        {
+          "path": "vault/archive-5.enc",
+          "iv": "VpoDblQYHJMXEwII",
+          "enc_bytes": 173604
+        }
+      ]
+    }
+  }
+}

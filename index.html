@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VInspect — KM3NeT Download</title>
+  <link rel="icon" type="image/svg+xml" href="vinspect-mark.svg">
+  <link rel="alternate icon" type="image/png" href="vinspect-icon.png">
+  <style>
+    :root {
+      --vinspect-brand-color: #126b8d;
+      --primary-color: #087bad;
+      --primary-hover: #0369a1;
+      --danger-color: #dc2626;
+      --success-color: #07815f;
+      --bg-color: #f3f6fa;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-color: #172b40;
+      --text-muted: #5e7185;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --code-bg: #eef2f7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --vinspect-brand-color: #72c9ea;
+        --primary-color: #087bad;
+        --primary-hover: #0a8ec7;
+        --danger-color: #f87171;
+        --success-color: #34d399;
+        --bg-color: #0c121b;
+        --card-bg: #141e2b;
+        --card-border: #222d3d;
+        --text-color: #e8eff7;
+        --text-muted: #a2b2c5;
+        --input-bg: #101925;
+        --input-border: #2a384e;
+        --code-bg: #1b2838;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      display: grid;
+      place-items: center;
+      flex: 1 0 auto;
+      width: 100%;
+      padding: clamp(1rem, 4vh, 2.5rem) 1rem 1rem;
+    }
+    .shell {
+      width: min(100%, 460px);
+      min-width: 0;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.7rem;
+    }
+    .toolbar label {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+    .select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .select-wrap select {
+      appearance: none;
+      -webkit-appearance: none;
+      min-height: 38px;
+      padding: 0.35rem 2rem 0.35rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-color);
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .select-wrap select:hover,
+    .select-wrap select:focus-visible {
+      border-color: var(--primary-color);
+    }
+    .select-wrap svg {
+      position: absolute;
+      right: 0.6rem;
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    @media (max-width: 540px) {
+      .toolbar label { display: none; }
+      .select-wrap select { min-height: 42px; }
+    }
+    .card {
+      padding: clamp(1.25rem, 4vw, 1.85rem);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+    }
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin: 0 0 1.25rem;
+    }
+    .vinspect-mark {
+      width: 2.85rem;
+      height: 2.85rem;
+      flex: 0 0 auto;
+      color: var(--vinspect-brand-color);
+    }
+    .brand-header h1 {
+      margin: 0;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+    .brand-initial {
+      color: var(--vinspect-brand-color);
+      font-weight: 800;
+    }
+    .brand-subtitle {
+      margin: 0.18rem 0 0;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+    .intro {
+      margin: 0 0 1.1rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+    .field-label {
+      display: block;
+      margin: 0 0 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    .pw-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .pw-wrap input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.55rem 2.6rem 0.55rem 0.8rem;
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--text-color);
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 9px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .pw-wrap input:focus {
+      border-color: var(--primary-color);
+    }
+    .pw-toggle {
+      position: absolute;
+      right: 0.45rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 6px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .pw-toggle:hover {
+      color: var(--text-color);
+    }
+    .pw-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      min-height: 48px;
+      padding: 0.75rem 1.1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: var(--primary-color);
+      border: 0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    .download-btn:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+    .download-btn:disabled {
+      opacity: 0.68;
+      cursor: wait;
+    }
+    .download-btn svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+    .progress-box {
+      display: none;
+      margin-top: 0.7rem;
+    }
+    .progress-box.active {
+      display: block;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--code-bg);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--primary-color);
+      transition: width 0.12s linear;
+    }
+    .status-msg {
+      min-height: 1.15rem;
+      margin: 0.5rem 0 0;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .status-msg.error { color: var(--danger-color); font-weight: 500; }
+    .status-msg.ok { color: var(--success-color); font-weight: 500; }
+    .meta-note {
+      margin: 0.35rem 0 0;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+    .steps {
+      margin-top: 1.25rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--card-border);
+    }
+    .steps h2 {
+      margin: 0 0 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    .steps ol {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.81rem;
+      line-height: 1.65;
+    }
+    .steps li + li { margin-top: 0.28rem; }
+    .steps strong { color: var(--text-color); font-weight: 600; }
+    code {
+      background: var(--code-bg);
+      color: var(--text-color);
+      padding: 0.1rem 0.35rem;
+      border-radius: 5px;
+      font-size: 0.76rem;
+    }
+    .secondary-links {
+      margin-top: 1.1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .secondary-links a,
+    .link-btn {
+      color: var(--primary-color);
+      background: none;
+      border: 0;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      .secondary-links a, .link-btn { color: var(--vinspect-brand-color); }
+    }
+    .secondary-links a:hover,
+    .link-btn:hover { text-decoration: underline; }
+    .app-identity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      margin: 0.25rem auto 0.65rem;
+      padding: 0.5rem 0.85rem;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      line-height: 1.45;
+    }
+    .app-identity svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      flex: 0 0 auto;
+      color: var(--text-muted);
+    }
+    .app-identity p { margin: 0; }
+    .app-identity-author { font-weight: 500; }
+    .app-identity-lab { font-size: 0.63rem; }
+    .app-identity a { color: inherit; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="toolbar">
+        <label for="ui-language" id="lang-label">Language</label>
+        <div class="select-wrap">
+          <select id="ui-language" aria-label="Interface language" onchange="setLang(this.value, true)">
+            <option value="en">English</option>
+            <option value="it">Italiano</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="nl">Nederlands</option>
+            <option value="el">Ελληνικά</option>
+            <option value="es">Español</option>
+          </select>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </div>
+      </div>
+
+      <article class="card">
+        <header class="brand-header">
+          <svg class="vinspect-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="24" cy="20" r="15"/>
+            <path d="M9 20h30M24 5c-5.6 4.3-8.5 9.3-8.5 15s2.9 10.7 8.5 15c5.6-4.3 8.5-9.3 8.5-15S29.6 9.3 24 5Z"/>
+            <circle cx="24" cy="20" r="4"/>
+            <path d="M5 39c3.2-2 6.3-2 9.5 0s6.3 2 9.5 0 6.3-2 9.5 0 6.3 2 9.5 0M5 44c3.2-2 6.3-2 9.5 0s6.3 2 9.5 0 6.3-2 9.5 0 6.3 2 9.5 0"/>
+          </svg>
+          <div>
+            <h1 translate="no"><span class="brand-initial">V</span>Inspect</h1>
+            <p class="brand-subtitle" id="brand-sub">Visual inspection for KM3NeT</p>
+          </div>
+        </header>
+
+        <p class="intro" id="intro">Inspection and quality assurance platform for KM3NeT optical modules and electronic components.</p>
+
+        <form onsubmit="event.preventDefault(); startDownload('setup');">
+          <label class="field-label" for="access-pw" id="pw-label">KM3NeT collaboration password</label>
+          <div class="pw-wrap">
+            <input type="password" id="access-pw" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="••••••••" oninput="clearStatus()">
+            <button type="button" class="pw-toggle" id="pw-toggle" onclick="togglePw()" aria-label="Show password">
+              <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+
+          <button type="submit" class="download-btn" id="dl-btn">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12"/>
+            </svg>
+            <span id="dl-label">Download VInspect for Linux</span>
+          </button>
+        </form>
+
+        <div class="progress-box" id="prog-box" aria-hidden="true">
+          <div class="progress-track"><div class="progress-bar" id="prog-bar"></div></div>
+        </div>
+        <p class="status-msg" id="status-msg" role="status" aria-live="polite"></p>
+        <p class="meta-note" id="ver-label">Version 1.0.0 · Linux x86_64 · 1-Click automatic updates</p>
+
+        <div class="steps">
+          <h2 id="steps-title">Install in 3 steps</h2>
+          <ol id="steps-list">
+            <li>Enter the collaboration password and download <strong>VInspect-Setup</strong>.</li>
+            <li>Make it executable (right-click → <em>Properties → Permissions → Allow executing</em>, or <code>chmod +x VInspect-Setup</code>) and open it.</li>
+            <li>Click <strong>Install</strong>, open <strong>VInspect</strong>, and press <strong>Start server</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="secondary-links">
+          <span id="alt-label">Portable archive:</span>
+          <button type="button" class="link-btn" onclick="startDownload('archive')">VInspect-Linux.tar.gz</button>
+          &nbsp;·&nbsp;
+          <a href="https://github.com/emilianolibrizzi/vinspect-releases" id="rel-link">GitHub</a>
+          &nbsp;·&nbsp;
+          <a href="https://github.com/emilianolibrizzi/vinspect-releases/blob/main/COPYRIGHT.md" id="copy-link">Copyright</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="app-identity" aria-label="VInspect">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="20" r="15"/>
+      <path d="M9 20h30M24 5c-5.6 4.3-8.5 9.3-8.5 15s2.9 10.7 8.5 15c5.6-4.3 8.5-9.3 8.5-15S29.6 9.3 24 5Z"/>
+      <circle cx="24" cy="20" r="4"/>
+      <path d="M5 39c3.2-2 6.3-2 9.5 0s6.3 2 9.5 0 6.3-2 9.5 0 6.3 2 9.5 0M5 44c3.2-2 6.3-2 9.5 0s6.3 2 9.5 0 6.3-2 9.5 0 6.3 2 9.5 0"/>
+    </svg>
+    <div>
+      <p class="app-identity-author"><span id="author-line">Developed by Emiliano Librizzi</span> · <a href="https://github.com/emilianolibrizzi/vinspect-releases/blob/main/COPYRIGHT.md">© 2026 <span id="rights-line">All rights reserved</span></a></p>
+      <p class="app-identity-lab" id="lab-line">INFN Naples · Capacity Laboratory · KM3NeT</p>
+    </div>
+  </footer>
+
+  <script>
+    const copy = {
+      en: {
+        langLabel: 'Language',
+        brandSub: 'Visual inspection for KM3NeT',
+        intro: 'Inspection and quality assurance platform for KM3NeT optical modules and electronic components.',
+        pwLabel: 'KM3NeT collaboration password',
+        pwEmpty: 'Enter the KM3NeT collaboration password to download.',
+        pwWrong: 'Incorrect password. Check with your KM3NeT coordinator.',
+        dlProgress: 'Downloading and unlocking…',
+        dlReady: 'Download ready.',
+        dlNetErr: 'Network error during download. Please retry.',
+        dl: 'Download VInspect for Linux',
+        ver: 'Version 1.0.0 · Linux x86_64 · 1-Click automatic updates',
+        stepsTitle: 'Install in 3 steps',
+        steps: [
+          'Enter the collaboration password and download <strong>VInspect-Setup</strong>.',
+          'Make it executable (right-click → <em>Properties → Permissions → Allow executing</em>, or <code>chmod +x VInspect-Setup</code>) and open it.',
+          'Click <strong>Install</strong>, open <strong>VInspect</strong>, and press <strong>Start server</strong>.'
+        ],
+        alt: 'Portable archive:',
+        rel: 'GitHub',
+        author: 'Developed by Emiliano Librizzi',
+        rights: 'All rights reserved',
+        lab: 'INFN Naples · Capacity Laboratory · KM3NeT'
+      },
+      it: {
+        langLabel: 'Lingua',
+        brandSub: 'Ispezione visiva per KM3NeT',
+        intro: 'Piattaforma di ispezione e controllo qualità per moduli ottici e componenti elettronici KM3NeT.',
+        pwLabel: 'Password collaborazione KM3NeT',
+        pwEmpty: 'Inserisci la password della collaborazione KM3NeT per scaricare.',
+        pwWrong: 'Password non corretta. Verifica il codice con il referente KM3NeT.',
+        dlProgress: 'Scaricamento e sblocco in corso…',
+        dlReady: 'Download completato.',
+        dlNetErr: 'Errore di rete durante il download. Riprova.',
+        dl: 'Scarica VInspect per Linux',
+        ver: 'Versione 1.0.0 · Linux x86_64 · Aggiornamenti automatici 1-Click',
+        stepsTitle: 'Installazione in 3 passaggi',
+        steps: [
+          'Inserisci la password della collaborazione e scarica <strong>VInspect-Setup</strong>.',
+          'Rendilo eseguibile (tasto destro → <em>Proprietà → Permessi → Consenti esecuzione</em>, oppure <code>chmod +x VInspect-Setup</code>) e aprilo.',
+          'Clicca <strong>Installa</strong>, apri <strong>VInspect</strong> e premi <strong>Avvia server</strong>.'
+        ],
+        alt: 'Archivio portatile:',
+        rel: 'GitHub',
+        author: 'Sviluppato da Emiliano Librizzi',
+        rights: 'Tutti i diritti riservati',
+        lab: 'INFN Naples · Capacity Laboratory · KM3NeT'
+      },
+      fr: {
+        langLabel: 'Langue',
+        brandSub: 'Inspection visuelle pour KM3NeT',
+        intro: 'Plateforme d’inspection et d’assurance qualité pour les modules optiques et composants électroniques KM3NeT.',
+        pwLabel: 'Mot de passe collaboration KM3NeT',
+        pwEmpty: 'Saisissez le mot de passe de la collaboration KM3NeT pour télécharger.',
+        pwWrong: 'Mot de passe incorrect.',
+        dlProgress: 'Téléchargement et déverrouillage…',
+        dlReady: 'Téléchargement prêt.',
+        dlNetErr: 'Erreur réseau pendant le téléchargement. Veuillez réessayer.',
+        dl: 'Télécharger VInspect pour Linux',
+        ver: 'Version 1.0.0 · Linux x86_64 · Mises à jour automatiques en 1 clic',
+        stepsTitle: 'Installation en 3 étapes',
+        steps: [
+          'Saisissez le mot de passe de la collaboration et téléchargez <strong>VInspect-Setup</strong>.',
+          'Rendez-le exécutable (clic droit → <em>Propriétés → Permissions → Autoriser l’exécution</em>, ou <code>chmod +x VInspect-Setup</code>) puis ouvrez-le.',
+          'Cliquez sur <strong>Installer</strong>, ouvrez <strong>VInspect</strong> et appuyez sur <strong>Démarrer le serveur</strong>.'
+        ],
+        alt: 'Archive portable :',
+        rel: 'GitHub',
+        author: 'Développé par Emiliano Librizzi',
+        rights: 'Tous droits réservés',
+        lab: 'INFN Naples · Laboratoire Capacity · KM3NeT'
+      },
+      de: {
+        langLabel: 'Sprache',
+        brandSub: 'Sichtprüfung für KM3NeT',
+        intro: 'Plattform für Sichtprüfung und Qualitätssicherung optischer Module und elektronischer Komponenten von KM3NeT.',
+        pwLabel: 'KM3NeT-Kollaborationspasswort',
+        pwEmpty: 'Geben Sie das KM3NeT-Passwort zum Herunterladen ein.',
+        pwWrong: 'Falsches Passwort.',
+        dlProgress: 'Wird heruntergeladen und entsperrt…',
+        dlReady: 'Download bereit.',
+        dlNetErr: 'Netzwerkfehler beim Herunterladen. Bitte erneut versuchen.',
+        dl: 'VInspect für Linux herunterladen',
+        ver: 'Version 1.0.0 · Linux x86_64 · Automatische 1-Klick-Updates',
+        stepsTitle: 'Installation in 3 Schritten',
+        steps: [
+          'Geben Sie das Kollaborationspasswort ein und laden Sie <strong>VInspect-Setup</strong> herunter.',
+          'Machen Sie die Datei ausführbar (Rechtsklick → <em>Eigenschaften → Berechtigungen → Ausführen erlauben</em> oder <code>chmod +x VInspect-Setup</code>) und öffnen Sie sie.',
+          'Klicken Sie auf <strong>Installieren</strong>, öffnen Sie <strong>VInspect</strong> und drücken Sie <strong>Server starten</strong>.'
+        ],
+        alt: 'Portables Archiv:',
+        rel: 'GitHub',
+        author: 'Entwickelt von Emiliano Librizzi',
+        rights: 'Alle Rechte vorbehalten',
+        lab: 'INFN Naples · Labor Capacity · KM3NeT'
+      },
+      nl: {
+        langLabel: 'Taal',
+        brandSub: 'Visuele inspectie voor KM3NeT',
+        intro: 'Platform voor visuele inspectie en kwaliteitsborging van optische modules en elektronische componenten van KM3NeT.',
+        pwLabel: 'KM3NeT-samenwerkingswachtwoord',
+        pwEmpty: 'Voer het KM3NeT-wachtwoord in om te downloaden.',
+        pwWrong: 'Onjuist wachtwoord.',
+        dlProgress: 'Downloaden en ontgrendelen…',
+        dlReady: 'Download gereed.',
+        dlNetErr: 'Netwerkfout tijdens het downloaden. Probeer het opnieuw.',
+        dl: 'Download VInspect voor Linux',
+        ver: 'Versie 1.0.0 · Linux x86_64 · Automatische updates met 1 klik',
+        stepsTitle: 'Installeren in 3 stappen',
+        steps: [
+          'Voer het samenwerkingswachtwoord in en download <strong>VInspect-Setup</strong>.',
+          'Maak het bestand uitvoerbaar (rechtermuisklik → <em>Eigenschappen → Rechten → Uitvoeren toestaan</em>, of <code>chmod +x VInspect-Setup</code>) en open het.',
+          'Klik op <strong>Installeren</strong>, open <strong>VInspect</strong> en druk op <strong>Server starten</strong>.'
+        ],
+        alt: 'Draagbaar archief:',
+        rel: 'GitHub',
+        author: 'Ontwikkeld door Emiliano Librizzi',
+        rights: 'Alle rechten voorbehouden',
+        lab: 'INFN Naples · Capacity Laboratory · KM3NeT'
+      },
+      el: {
+        langLabel: 'Γλώσσα',
+        brandSub: 'Οπτικός έλεγχος για το KM3NeT',
+        intro: 'Πλατφόρμα οπτικής επιθεώρησης και διασφάλισης ποιότητας για οπτικές μονάδες και ηλεκτρονικά εξαρτήματα του KM3NeT.',
+        pwLabel: 'Κωδικός συνεργασίας KM3NeT',
+        pwEmpty: 'Εισαγάγετε τον κωδικό συνεργασίας KM3NeT για λήψη.',
+        pwWrong: 'Εσφαλμένος κωδικός πρόσβασης.',
+        dlProgress: 'Λήψη και ξεκλείδωμα…',
+        dlReady: 'Η λήψη ολοκληρώθηκε.',
+        dlNetErr: 'Σφάλμα δικτύου κατά τη λήψη. Δοκιμάστε ξανά.',
+        dl: 'Λήψη του VInspect για Linux',
+        ver: 'Έκδοση 1.0.0 · Linux x86_64 · Αυτόματες ενημερώσεις με 1 κλικ',
+        stepsTitle: 'Εγκατάσταση σε 3 βήματα',
+        steps: [
+          'Εισαγάγετε τον κωδικό συνεργασίας και κατεβάστε το <strong>VInspect-Setup</strong>.',
+          'Κάντε το εκτελέσιμο (δεξί κλικ → <em>Ιδιότητες → Δικαιώματα → Να επιτρέπεται η εκτέλεση</em> ή <code>chmod +x VInspect-Setup</code>) και ανοίξτε το.',
+          'Πατήστε <strong>Εγκατάσταση</strong>, ανοίξτε το <strong>VInspect</strong> και πατήστε <strong>Εκκίνηση διακομιστή</strong>.'
+        ],
+        alt: 'Φορητό αρχείο:',
+        rel: 'GitHub',
+        author: 'Ανάπτυξη: Emiliano Librizzi',
+        rights: 'Με την επιφύλαξη παντός δικαιώματος',
+        lab: 'INFN Naples · Capacity Laboratory · KM3NeT'
+      },
+      es: {
+        langLabel: 'Idioma',
+        brandSub: 'Inspección visual para KM3NeT',
+        intro: 'Plataforma de inspección visual y control de calidad para módulos ópticos y componentes electrónicos de KM3NeT.',
+        pwLabel: 'Contraseña de la colaboración KM3NeT',
+        pwEmpty: 'Introduce la contraseña de la colaboración KM3NeT para descargar.',
+        pwWrong: 'Contraseña incorrecta.',
+        dlProgress: 'Descargando y desbloqueando…',
+        dlReady: 'Descarga lista.',
+        dlNetErr: 'Error de red durante la descarga. Inténtalo de nuevo.',
+        dl: 'Descargar VInspect para Linux',
+        ver: 'Versión 1.0.0 · Linux x86_64 · Actualizaciones automáticas en 1 clic',
+        stepsTitle: 'Instalación en 3 pasos',
+        steps: [
+          'Introduce la contraseña de la colaboración y descarga <strong>VInspect-Setup</strong>.',
+          'Hazlo ejecutable (clic derecho → <em>Propiedades → Permisos → Permitir ejecutar</em>, o <code>chmod +x VInspect-Setup</code>) y ábrelo.',
+          'Haz clic en <strong>Instalar</strong>, abre <strong>VInspect</strong> y pulsa <strong>Iniciar servidor</strong>.'
+        ],
+        alt: 'Archivo portátil:',
+        rel: 'GitHub',
+        author: 'Desarrollado por Emiliano Librizzi',
+        rights: 'Todos los derechos reservados',
+        lab: 'INFN Naples · Capacity Laboratory · KM3NeT'
+      }
+    };
+
+    let activeLang = 'en';
+    let cachedMeta = null;
+    let busy = false;
+
+    function b64ToBytes(b64) {
+      const bin = atob(b64);
+      const out = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    }
+
+    function bytesToHex(buf) {
+      const arr = new Uint8Array(buf);
+      let s = '';
+      for (let i = 0; i < arr.length; i++) s += arr[i].toString(16).padStart(2, '0');
+      return s;
+    }
+
+    function togglePw() {
+      const inp = document.getElementById('access-pw');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    }
+
+    function setStatus(msg, cls) {
+      const el = document.getElementById('status-msg');
+      el.textContent = msg || '';
+      el.className = 'status-msg' + (cls ? ' ' + cls : '');
+    }
+
+    function clearStatus() {
+      if (!busy) setStatus('', '');
+    }
+
+    async function deriveKey(password, saltB64, iterations) {
+      const enc = new TextEncoder();
+      const baseKey = await crypto.subtle.importKey(
+        'raw',
+        enc.encode(password.trim().toLowerCase()),
+        'PBKDF2',
+        false,
+        ['deriveKey']
+      );
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: b64ToBytes(saltB64), iterations: iterations, hash: 'SHA-256' },
+        baseKey,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['decrypt']
+      );
+    }
+
+    async function fetchChunkWithProgress(url, onBytes) {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.body || !res.body.getReader) {
+        const ab = await res.arrayBuffer();
+        onBytes(ab.byteLength);
+        return new Uint8Array(ab);
+      }
+      const reader = res.body.getReader();
+      const parts = [];
+      let total = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        parts.push(value);
+        total += value.byteLength;
+        onBytes(value.byteLength);
+      }
+      const merged = new Uint8Array(total);
+      let off = 0;
+      for (const p of parts) {
+        merged.set(p, off);
+        off += p.byteLength;
+      }
+      return merged;
+    }
+
+    async function startDownload(targetKey) {
+      if (busy) return;
+      const t = copy[activeLang] || copy.en;
+      const pw = (document.getElementById('access-pw').value || '').trim();
+      if (!pw) {
+        setStatus(t.pwEmpty, 'error');
+        document.getElementById('access-pw').focus();
+        return;
+      }
+
+      const btn = document.getElementById('dl-btn');
+      const progBox = document.getElementById('prog-box');
+      const progBar = document.getElementById('prog-bar');
+      busy = true;
+      btn.disabled = true;
+      setStatus('', '');
+
+      try {
+        if (!cachedMeta) {
+          const mRes = await fetch('vault/meta.json', { cache: 'no-cache' });
+          if (!mRes.ok) throw new Error('meta');
+          cachedMeta = await mRes.json();
+        }
+        const key = await deriveKey(pw, cachedMeta.salt, cachedMeta.iterations);
+        const enc = new TextEncoder();
+
+        // Instant password verification before downloading chunks
+        try {
+          await crypto.subtle.decrypt(
+            {
+              name: 'AES-GCM',
+              iv: b64ToBytes(cachedMeta.verifier.iv),
+              additionalData: enc.encode(cachedMeta.verifier.aad)
+            },
+            key,
+            b64ToBytes(cachedMeta.verifier.ct)
+          );
+        } catch (authErr) {
+          setStatus(t.pwWrong, 'error');
+          document.getElementById('access-pw').select();
+          return;
+        }
+
+        const spec = cachedMeta.targets[targetKey];
+        const totalEnc = spec.chunks.reduce((acc, c) => acc + c.enc_bytes, 0);
+        let downloaded = 0;
+        progBar.style.width = '0%';
+        progBox.classList.add('active');
+        setStatus(t.dlProgress + ' 0%', '');
+
+        const decryptedParts = [];
+        for (let i = 0; i < spec.chunks.length; i++) {
+          const ch = spec.chunks[i];
+          const ctBytes = await fetchChunkWithProgress(ch.path, (delta) => {
+            downloaded += delta;
+            const pct = Math.min(99, Math.round((downloaded / totalEnc) * 100));
+            progBar.style.width = pct + '%';
+            setStatus(t.dlProgress + ' ' + pct + '%', '');
+          });
+          const plainBuf = await crypto.subtle.decrypt(
+            {
+              name: 'AES-GCM',
+              iv: b64ToBytes(ch.iv),
+              additionalData: enc.encode(targetKey + ':' + i)
+            },
+            key,
+            ctBytes
+          );
+          decryptedParts.push(new Uint8Array(plainBuf));
+        }
+
+        // Verify SHA-256 integrity of assembled file
+        const fullBytes = new Uint8Array(spec.total_bytes);
+        let pos = 0;
+        for (const p of decryptedParts) {
+          fullBytes.set(p, pos);
+          pos += p.byteLength;
+        }
+        const digestHex = bytesToHex(await crypto.subtle.digest('SHA-256', fullBytes));
+        if (digestHex !== spec.sha256) {
+          throw new Error('SHA-256 mismatch');
+        }
+
+        progBar.style.width = '100%';
+        const blob = new Blob([fullBytes], { type: 'application/octet-stream' });
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = spec.filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+        setStatus(t.dlReady, 'ok');
+      } catch (err) {
+        setStatus(t.dlNetErr, 'error');
+      } finally {
+        busy = false;
+        btn.disabled = false;
+        setTimeout(() => {
+          if (!busy) progBox.classList.remove('active');
+        }, 1800);
+      }
+    }
+
+    function setLang(l, persist) {
+      const code = copy[l] ? l : 'en';
+      activeLang = code;
+      const t = copy[code];
+      document.documentElement.lang = code;
+      document.getElementById('lang-label').textContent = t.langLabel;
+      document.getElementById('brand-sub').textContent = t.brandSub;
+      document.getElementById('intro').textContent = t.intro;
+      document.getElementById('pw-label').textContent = t.pwLabel;
+      document.getElementById('dl-label').textContent = t.dl;
+      document.getElementById('ver-label').textContent = t.ver;
+      document.getElementById('steps-title').textContent = t.stepsTitle;
+      document.getElementById('steps-list').innerHTML = t.steps.map(s => '<li>' + s + '</li>').join('');
+      document.getElementById('alt-label').textContent = t.alt;
+      document.getElementById('rel-link').textContent = t.rel;
+      document.getElementById('author-line').textContent = t.author;
+      document.getElementById('rights-line').textContent = t.rights;
+      document.getElementById('lab-line').textContent = t.lab;
+      const sel = document.getElementById('ui-language');
+      if (sel && sel.value !== code) sel.value = code;
+      if (!busy) setStatus('', '');
+      if (persist) {
+        try { localStorage.setItem('vinspect_dl_lang', code); } catch (e) {}
+      }
+    }
+
+    (function () {
+      let initial = '';
+      try { initial = localStorage.getItem('vinspect_dl_lang') || ''; } catch (e) {}
+      if (!copy[initial]) {
+        const prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+        for (const pref of prefs) {
+          const short = String(pref || '').toLowerCase().slice(0, 2);
+          if (copy[short]) { initial = short; break; }
+        }
+      }
+      setLang(copy[initial] ? initial : 'en', false);
+    })();
+  </script>
+</body>
+</html>

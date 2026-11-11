@@ -1,0 +1,12 @@
+{
+  "payload": {
+    "notes": "VInspect 1.0.0 \u2014 Visual inspection and quality assurance platform for KM3NeT.",
+    "platform": "linux-x86_64",
+    "schema": 1,
+    "sha256": "5b967ed42b8b00196366019a6e75ed51ef359d7580cd2fd8161f6f4ed4494089",
+    "size": 52732112,
+    "url": "https://emilianolibrizzi.github.io/vinspect-releases/vault/update.index.json",
+    "version": "3048.1.0.0"
+  },
+  "signature": "prMZKEN1sZM5FVs1fkCPZayyPTZCIs6+qzoOBb+6p4Ddzt7RZu6YHf/ep2yDSVcp1YrC7BB5aPRp1fYKfxz7Bg=="
+}

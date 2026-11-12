@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use VInspect in KM3NeT integration, quality assurance, or publications, please cite it using the metadata below."
+title: "VInspect: Visual Inspection and Quality Assurance Platform for KM3NeT Optical Modules, Detection Units, and Electronic Components"
+type: software
+version: "1.0.0"
+doi: "10.5281/zenodo.24143815"
+date-released: "2026-11-11"
+authors:
+  - family-names: "Librizzi"
+    given-names: "Emiliano"
+    email: "emiliano.librizzi@gmail.com"
+    orcid: "https://orcid.org/0009-0004-5069-0326"
+    affiliation: "Istituto Nazionale di Fisica Nucleare (INFN), Sezione di Napoli — Capacity Laboratory"
+repository-artifact: "https://emilianolibrizzi.github.io/vinspect-releases/"
+url: "https://github.com/emilianolibrizzi/vinspect-releases"
+keywords:
+  - "KM3NeT"
+  - "Digital Optical Module"
+  - "Detection Unit"
+  - "Quality Assurance"
+  - "Visual Inspection"
+  - "INFN"
+license-url: "https://github.com/emilianolibrizzi/vinspect-releases/blob/main/COPYRIGHT.md"

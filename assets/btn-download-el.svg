@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="325" height="46" viewBox="0 0 325 46" role="img" aria-label="Λήψη του VInspect για Linux">
+  <rect x="0.5" y="0.5" width="324" height="45" rx="10" fill="#087bad" stroke="#38bdf8" stroke-opacity="0.3"/>
+  <g transform="translate(42.7, 13)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 2v11m0 0l-4-4m4 4l4-4M3 17h14"/>
+  </g>
+  <text x="70.7" y="28.5" text-anchor="start" fill="#ffffff" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Helvetica, Arial, sans-serif" font-size="14.8" font-weight="600">Λήψη του VInspect για Linux</text>
+</svg>
